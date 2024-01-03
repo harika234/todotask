@@ -10,6 +10,7 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.Optional;
 
+
 @Service
 public class TaskServiceImpl implements TaskService {
     @Autowired
@@ -33,5 +34,9 @@ public class TaskServiceImpl implements TaskService {
         }
         return task.get();
 
+    }
+
+    public Task fetchTaskByName(String taskName) {
+    return taskRepository.findByTaskNameIgnoreCase(taskName);
     }
 }

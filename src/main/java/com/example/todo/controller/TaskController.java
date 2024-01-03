@@ -25,8 +25,16 @@ public class TaskController {
     public List<Task> fetchTaskList() {
         return taskService.fetchTaskList();
     }
+
+
     @GetMapping("/tasks/{id}")
     public Task fetchTaskById(@PathVariable("id") Long taskId) throws  TaskNotFoundException {
         return taskService.fetchTaskById(taskId);
     }
+
+    @GetMapping("tasks/{name}")
+    public Task fetchByTaskName(@PathVariable("name") String taskName) {
+        return taskService.fetchTaskByName(taskName);
+    }
+
 }
