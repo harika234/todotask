@@ -13,5 +13,9 @@ public interface TaskService {
     public Task fetchTaskById(Long taskId) throws TaskNotFoundException;
 
 
-    public Task fetchTaskByName(String taskName);
+    public List<Task> fetchTaskByName(String taskName);
+
+    public void deleteTaskById(Long taskId);
+
+    public Task updateTaskById(Long taskId, Task task);
 }

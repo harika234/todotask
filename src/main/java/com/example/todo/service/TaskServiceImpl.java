@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -36,7 +37,32 @@ public class TaskServiceImpl implements TaskService {
 
     }
 
-    public Task fetchTaskByName(String taskName) {
+    public List<Task> fetchTaskByName(String taskName) {
     return taskRepository.findByTaskNameIgnoreCase(taskName);
+    }
+
+    public void deleteTaskById(Long taskId) {
+        taskRepository.deleteById((taskId));
+    }
+
+    public Task updateTaskById(Long taskId, Task task) {
+        Task depDB = taskRepository.findById(taskId).get();
+
+        if(Objects.nonNull(task.getTaskName()) && !"".
+                equalsIgnoreCase(task.getTaskName())) {
+
+            depDB.setTaskName(task.getTaskName());
+        }
+        if(Objects.nonNull(task.getTaskCategory()) && !"".
+                equalsIgnoreCase(task.getTaskCategory())) {
+
+            depDB.setTaskCategory(task.getTaskName());
+        }
+        if(Objects.nonNull(task.getTaskDescription()) && !"".
+                equalsIgnoreCase(task.getTaskDescription())) {
+
+            depDB.setTaskCategory(task.getTaskName());
+        }
+        return taskRepository.save(depDB);
     }
 }

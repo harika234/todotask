@@ -27,14 +27,26 @@ public class TaskController {
     }
 
 
-    @GetMapping("/tasks/{id}")
+    @GetMapping("/tasks/id/{id}")
     public Task fetchTaskById(@PathVariable("id") Long taskId) throws  TaskNotFoundException {
         return taskService.fetchTaskById(taskId);
     }
 
-    @GetMapping("tasks/{name}")
-    public Task fetchByTaskName(@PathVariable("name") String taskName) {
+    @GetMapping("/tasks/name/{name}")
+    public List<Task> fetchByTaskName(@PathVariable("name") String taskName) {
         return taskService.fetchTaskByName(taskName);
+    }
+
+    @DeleteMapping ("/tasks/{id}")
+    public String deleteTaskById(@PathVariable("id") Long taskId) {
+        taskService.deleteTaskById(taskId);
+        return("Task id is deleted succesfully");
+
+    }
+
+    @PutMapping("/tasks/{id}")
+    public Task updateTaskById(@PathVariable("id") Long taskId,@RequestBody Task task){
+        return taskService.updateTaskById(taskId,task);
     }
 
 }

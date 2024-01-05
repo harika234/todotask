@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 
 //@SpringBootApplication(scanBasePackages={"com.*"})
-@EntityScan( basePackages = {"com.*"} )
-@EnableJpaRepositories( basePackages = {"com.*"} )
+//@EntityScan( basePackages = {"com.*"} )
+//@EnableJpaRepositories( basePackages = {"com.*"} )
  public class TodoApplication {
 	public static void main(String[] args) {
 
