@@ -65,4 +65,9 @@ public class TaskServiceImpl implements TaskService {
         }
         return taskRepository.save(depDB);
     }
+
+    public List<Task> getTasksBetweenDates(LocalDate startDate, LocalDate endDate) {
+        // Implement your logic to retrieve tasks from the repository within the given date range
+        return taskRepository.findByTaskDateBetween(startDate, endDate);
+    }
 }

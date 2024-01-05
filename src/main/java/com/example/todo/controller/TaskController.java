@@ -3,8 +3,10 @@ import com.example.todo.error.TaskNotFoundException;
 import com.example.todo.entity.Task;
 import com.example.todo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -47,6 +49,16 @@ public class TaskController {
     @PutMapping("/tasks/{id}")
     public Task updateTaskById(@PathVariable("id") Long taskId,@RequestBody Task task){
         return taskService.updateTaskById(taskId,task);
+    }
+
+
+    @GetMapping("/tasks/between-dates")
+    public List<Task> getTasksBetweenDates(
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+
+        // Call your service method to get tasks between the given dates
+        return taskService.getTasksBetweenDates(startDate, endDate);
     }
 
 }
